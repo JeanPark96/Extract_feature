@@ -13,7 +13,7 @@ import os
 # from args import MODEL_DIR
 import clip
 
-
+#override feature.csv file configuration
 scenic_zeroshot_eval_folder_path = "" #add
 video_name = "" #add
 feature_name = "" #add
@@ -22,6 +22,11 @@ video_path = os.path.join("video", video_name)
 feature_path = os.path.join("feature", feature_name)
 df = pd.DataFrame([[os.path.join(scenic_zeroshot_eval_folder_path, video_path), os.path.join(scenic_zeroshot_eval_folder_path, feature_path)]], columns = ["video_path", "feature_path"])
 df.to_csv(extract_feature_csv_path, index=None)
+
+#create feature folder in vid2seq if not exist
+if not os.path.exists(os.path.join(scenic_zeroshot_eval_folder_path, 'feature')) :
+    os.makedirs(os.path.join(scenic_zeroshot_eval_folder_path, 'feature'))
+    print(f"create dir {os.path.join(scenic_zeroshot_eval_folder_path, 'feature')}")
 
 parser = argparse.ArgumentParser(description="Easy video feature extractor")
 
@@ -119,6 +124,7 @@ with th.no_grad():
                 features = features.cpu().numpy()
                 if args.half_precision:
                     features = features.astype("float16")
+                
                 np.save(output_file, features)
         else:
             print("Video {} already processed.".format(input_file))
