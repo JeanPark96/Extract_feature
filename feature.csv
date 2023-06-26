@@ -1,0 +1,2 @@
+video_path,feature_path
+/home/hlpark/shared/REDUCE/models/scenic/scenic/projects/vid2seq/zero_shot_eval/video/patient_01_trim2_masked_camera.mp4,/home/hlpark/shared/REDUCE/models/scenic/scenic/projects/vid2seq/zero_shot_eval/feature/patient_01_trim2_masked_camera
